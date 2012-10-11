@@ -1,0 +1,17 @@
+|======================================================|
+|   ____                   _      __  __ _____  _____  |
+|  / __ \                 | |    |  \/  |_   _|/ ____| |
+| | |  | |_ __   ___ _ __ | |    | \  / | | | | (___   |
+| | |  | | '_ \ / _ \ '_ \| |    | |\/| | | |  \___ \  |
+| | |__| | |_) |  __/ | | | |____| |  | |_| |_ ____) | |
+|  \____/| .__/ \___|_| |_|______|_|  |_|_____|_____/  |
+|        | |                                           |
+|        |_|                                           |
+|                                                      |
+|   env-setup ~ auto-bot                               |
+;======================================================;
+
+maintaining DevOps related Project requirements
+
+.\rough-sketch => initiated tasks to be automated gradually
+.\config-code  => the automated configuration management code
