@@ -1,7 +1,7 @@
 # java::install
 
 case node.platform
-when "centos", "redhat"
+when "centos", "redhat", "amazon", "scientific"
   $git_package = 'git'
 
 else
