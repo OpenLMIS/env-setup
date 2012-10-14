@@ -42,8 +42,7 @@ module Sys
 	def self.err(msg); puts msg && exit 1; end
 
 	def self.sudo
-		nosudo = ENV['NOSUDO']
-		nosudo.nil? && nosudo
+		ENV['NOSUDO'].nil? ? 'sudo' : '' 
 	end
 end
 
