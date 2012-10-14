@@ -1,4 +1,4 @@
-OpsCode Chef Cookbook :: Java
+OpsCode Chef Cookbook :: Git
 ==============================
 
 Specs
@@ -10,8 +10,8 @@ Specs
 Usage
 -----
 
-java::install ~ install java 1.6 openjdk
-
+git::install ~ install Git
+will perform advanced git utility tasks when required
 
 Contact
 -------
