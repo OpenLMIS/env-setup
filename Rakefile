@@ -7,6 +7,9 @@ task :default => [:foodcritic]
 
 task :foodcritic do
 	cookbooks = File.absolute_path(File.join File.dirname(__FILE__), 'config-code', 'chef', 'cookbooks')
-  linter = FoodCritic::Rake::LintTask.new
-  linter.files = cookbooks
+  puts 'FoodCritic running...
+        would criticize if finds anything, not cycnical to blabber otherwise.'
+  result = FoodCritic::Linter.new.check cookbooks, {}
+  puts result
+  fail if result.failed?
 end
