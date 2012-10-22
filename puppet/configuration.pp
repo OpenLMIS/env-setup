@@ -13,7 +13,6 @@ class { "repos": }
 -> class { "users" :
 	userName => "${openlmisUser}",
 	password => "$1$DzM5.Zej$sPBWAYiWiVVdDRcSu0Xt70" }
--> class { "ant" : }
 -> class { "git" : }
 -> class { "tomcat" :
 	version => "7.0.22",
