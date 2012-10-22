@@ -1,5 +1,5 @@
 ####### user #######
-$openlmisUser = "openlmis"
+$motechUser = "openlmis"
 
 ####### deploy environment #######
 $env = "<environment>"
@@ -7,16 +7,22 @@ $env = "<environment>"
 ####### httpd configuration begin #######
 ####### httpd configuration end #######
 
+#Tomcat 7.0.22 configuration
+
+
 
 class { "repos": }
 # to generate password hash use 'echo "password" | openssl passwd -1 -stdin'
 -> class { "users" :
-	userName => "${openlmisUser}",
-	password => "$1$DzM5.Zej$sPBWAYiWiVVdDRcSu0Xt70" }
+	userName => "${motechUser}",
+	password => "$1$DzM5.Zej$sPBWAYiWiVVdDRcSu0Xt70"
+	}
 -> class { "git" : }
 -> class { "tomcat" :
 	version => "7.0.22",
-	userName => "${openlmisUser}"}
+	userName => "${motechUser}",
+	tomcatManagerUserName => "tomcat",
+	tomcatManagerPassword => "p@ssw0rd"}
 -> class { "postgres" :
 	postgresUser => "postgres",
 	postgresPassword => "$1$DzM5.Zej$sPBWAYiWiVVdDRcSu0Xt70",
