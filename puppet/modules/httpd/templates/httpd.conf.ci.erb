@@ -1,0 +1,25 @@
+# gotta templatize it for Port, IPs, ServerNames
+
+NameVirtualHost *:80
+
+<VirtualHost *:80>
+
+  ServerAlias qa.*.xip.io
+
+  <Location />
+    ProxyPass          http://192.168.34.2:8080/openlmis-web/
+    ProxyPassReverse   http://192.168.34.2:8080/openlmis-web/
+    ProxyPassReverseCookiePath/openlmis-web/
+  </Location>
+</VirtualHost>
+
+<VirtualHost *:80>
+
+  ServerAlias uat.*.xip.io
+
+  <Location />
+    ProxyPass          http://192.168.34.3:8080/openlmis-web/
+    ProxyPassReverse   http://192.168.34.3:8080/openlmis-web/
+    ProxyPassReverseCookiePath/openlmis-web/
+  </Location>
+</VirtualHost>
