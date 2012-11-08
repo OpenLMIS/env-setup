@@ -1,4 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'chef'
-gem 'foodcritic'
+gem 'rake'
+gem 'puppet'
+gem 'puppet-lint'
+gem 'rspec-puppet'
