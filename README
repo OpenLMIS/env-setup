@@ -11,7 +11,16 @@
 |   env-setup ~ auto-bot                               |
 ;======================================================;
 
+currently this is mainly focussed to RHEL6/CentOS6 distros
+
 maintaining DevOps related Project requirements
 
 .\rough-sketch => initiated tasks to be automated gradually
+
+
+
+.\puppet       => will be used for ConfigAutomation
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+will be remove in some time
 .\config-code  => the automated configuration management code
