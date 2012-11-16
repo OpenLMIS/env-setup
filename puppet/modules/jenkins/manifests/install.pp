@@ -6,7 +6,7 @@ class jenkins::install {
 
   package { 'jenkins':
     ensure  =>  'present',
-    require => [Yumrepo['jenkins'],
+    require => [Class['repos::jenkins'],
                 Class['java::sun_jdk']]
   }
 }
