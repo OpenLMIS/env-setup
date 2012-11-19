@@ -4,13 +4,13 @@ apply plugin: 'cargo'
 import groovy.sql.Sql
 
 def env        = System.getenv()
-## WAR related config loaded from Environment Var
+// WAR related config loaded from Environment Var
 def warSourceUrl      = env['LMIS_WAR_SOURCE_URL']
 def warDestination    = env['LMIS_WAR_DESTINATION']
 def serverHome        = env['LMIS_SERVER_HOME']
 def serverName        = env['LMIS_SERVER_NAME']
 def serverPort        = env['LMIS_SERVER_PORT']
-## DB related config loaded from Environment Var
+// DB related config loaded from Environment Var
 def dbName            = env['LMIS_DB_NAME']
 def dbUser            = env['LMIS_DB_USER']
 def dbPassword        = env['LMIS_DB_PASSWORD']
