@@ -1,2 +1,15 @@
 .bundle/
 tmp/
+
+## deploy-script
+config-code/deploy-script/.idea/
+config-code/deploy-script/*.iml
+config-code/deploy-script/*.ipr
+config-code/deploy-script/*.iws
+config-code/deploy-script/build/
+config-code/deploy-script/out/
+config-code/deploy-script/classes
+config-code/deploy-script/.gradle
+config-code/deploy-script/*.DS_Store
+config-code/deploy-script/*.class.idea
+config-code/deploy-script/.gradle
