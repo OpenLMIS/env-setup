@@ -3,7 +3,7 @@ apply plugin: 'cargo'
 
 import groovy.sql.Sql
 
-def env        = System.getenv()
+def env               = System.getenv()
 // WAR related config loaded from Environment Var
 def warSourceUrl      = env['LMIS_WAR_SOURCE_URL']
 def warDestination    = env['LMIS_WAR_DESTINATION']
@@ -18,6 +18,22 @@ def databaseHostName  = env['LMIS_DB_HOSTNAME']
 def databasePort      = env['LMIS_DB_PORT']
 def dbJarSourceUrl    = env['LMIS_DB_JAR_URL']
 def dbJarDestination  = env['LMIS_DB_JAR_DESTINATION']
+
+task env_check << {
+  println "LMIS_WAR_SOURCE_URL: $warSourceUrl"
+  println "LMIS_WAR_DESTINATION: $warDestination"
+  println "LMIS_SERVER_HOME: $serverHome"
+  println "LMIS_SERVER_NAME: $serverName"
+  println "LMIS_SERVER_PORT: $serverPort"
+  println "LMIS_DB_NAME: $dbName"
+  println "LMIS_DB_USER: $dbUser"
+  println "LMIS_DB_PASSWORD: $dbPassword"
+  println "LMIS_DB_HOSTNAME: $databaseHostName"
+  println "LMIS_DB_PORT: $databasePort"
+  println "LMIS_DB_JAR_URL: $dbJarSourceUrl"
+  println "LMIS_DB_JAR_DESTINATION: $dbJarDestination"
+}
+
 
 
 configurations {
@@ -76,10 +92,10 @@ cargo {
 
 task deployOpenLmis(dependsOn: "setupDB") << {
     println("Deploying...")
+  //  cargoStopLocal.execute()  // when it works, stop goes from ci
     tasks.migrateDB.execute()
-    cargoStopLocal.execute()
     tasks.downloadFile.execute()
-    cargoRunLocal.execute()
+  //  cargoRunLocal.execute()   // when it works start goes from ci
 }
 
 
@@ -109,9 +125,29 @@ task dropDB() << {
 }
 
 def executeSql(String statement) {
-    configurations.classpath.each { file ->
-        gradle.class.classLoader.addURL(file.toURI().toURL())
-    }
+  configurations.classpath.each { file ->
+    gradle.class.classLoader.addURL(file.toURI().toURL())
+  }
+
+  /*
+   gotta remove this duplication
+  */
+  def env        = System.getenv()
+  // WAR related config loaded from Environment Var
+  def warSourceUrl      = env['LMIS_WAR_SOURCE_URL']
+  def warDestination    = env['LMIS_WAR_DESTINATION']
+  def serverHome        = env['LMIS_SERVER_HOME']
+  def serverName        = env['LMIS_SERVER_NAME']
+  def serverPort        = env['LMIS_SERVER_PORT']
+  // DB related config loaded from Environment Var
+  def dbName            = env['LMIS_DB_NAME']
+  def dbUser            = env['LMIS_DB_USER']
+  def dbPassword        = env['LMIS_DB_PASSWORD']
+  def databaseHostName  = env['LMIS_DB_HOSTNAME']
+  def databasePort      = env['LMIS_DB_PORT']
+  def dbJarSourceUrl    = env['LMIS_DB_JAR_URL']
+  def dbJarDestination  = env['LMIS_DB_JAR_DESTINATION']
+
     driverName = 'org.postgresql.Driver'
     Class.forName(driverName)
     Sql sql = (Sql) Sql.newInstance(
