@@ -1,0 +1,53 @@
+apply plugin: 'cargo'
+
+
+repositories {
+    mavenCentral()
+}
+
+
+
+buildscript {
+    repositories {
+        add(new org.apache.ivy.plugins.resolver.URLResolver()) {
+            name = 'GitHub'
+            addArtifactPattern 'http://cloud.github.com/downloads/[organisation]/[module]/[module]-[revision].[ext]'
+        }
+    }
+
+    dependencies {
+        classpath 'bmuschko:gradle-cargo-plugin:0.5.6'
+    }
+}
+
+
+
+dependencies {
+    cargo "org.codehaus.cargo:cargo-core-uberjar:$cargoVersion",
+            "org.codehaus.cargo:cargo-ant:$cargoVersion"
+}
+
+cargo {
+    containerId = serverName
+    port = Integer.valueOf(serverPort)
+    deployable {
+        file = file(destinationLocation + File.separator + warName)
+    }
+
+    local {
+        homeDir = file(serverHome)
+        output = file(serverLogFile)
+    }
+}
+
+task deployOpenLmis << {
+	tasks.downloadFile.execute()   
+	//cargoStopLocal.execute()
+    	//cargoRunLocal.execute()
+}
+
+
+task downloadFile {
+    ant.get(src: warSourceUrl + warName, dest: destinationLocation, verbose: 'true')
+}
+
