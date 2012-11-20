@@ -94,10 +94,18 @@ task deployOpenLmis(dependsOn: "setupDB") << {
     println("Deploying...")
   //  cargoStopLocal.execute()  // when it works, stop goes from ci
     tasks.migrateDB.execute()
+
+    tasks.cleanTomcatWorkCache.execute()
     tasks.downloadFile.execute()
   //  cargoRunLocal.execute()   // when it works start goes from ci
 }
 
+task cleanTomcatWorkCache << {
+  def workDir = new File("${serverHome}work/Catalina/localhost/openlmis-web")
+  def result  = workDir.deleteDir()
+  assert result
+  assert !workDir.exists()
+}
 
 
 task downloadFile << {
