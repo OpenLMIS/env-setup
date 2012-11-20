@@ -122,15 +122,9 @@ task downloadFile << {
 }
 
 task setupDB(dependsOn: ["createDB",clean]) << {
-  tasks.closeDB.execute()
   ext.flyway_classpath = files(configurations.flyway)
   ant.taskdef(name: 'flywayInit', classname: 'com.googlecode.flyway.ant.InitTask', classpath: ext.flyway_classpath.asPath)
   ant.flywayInit(driver: 'org.postgresql.Driver', url: 'jdbc:postgresql:' + dbName, user: dbUser, password: dbPassword)
-}
-
-task closeDB << {
-  println "Terminating all open connections to ${dbName}"
-  executeSql("select pg_terminate_backend(procpid) from pg_stat_activity where datname='${dbName}'")
 }
 
 task createDB(dependsOn: "dropDB") << {
@@ -175,7 +169,12 @@ def executeSql(String statement) {
           dbPassword,
           driverName
   )
-  sql.execute(statement)
+
+  println "Terminating all open connections to ${dbName}"
+  sql.execute "select pg_terminate_backend(procpid) from pg_stat_activity where datname='${dbName}'"
+
+  println "Exec SQL: ${statement}"
+  sql.execute statement
 }
 
 task migrateDB() << {
