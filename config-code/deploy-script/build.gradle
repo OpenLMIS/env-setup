@@ -101,10 +101,14 @@ task deployOpenLmis(dependsOn: "setupDB") << {
 }
 
 task cleanTomcatWorkCache << {
-  def workDir = new File("${serverHome}work/Catalina/localhost/openlmis-web")
-  def result  = workDir.deleteDir()
-  assert result
-  assert !workDir.exists()
+  def workDir   = new File("${serverHome}work/Catalina/localhost/openlmis-web")
+  def webappDir = new File("${serverHome}webapps/openlmis-web")
+
+  def delWorkDir    = workDir.deleteDir()
+  def delWebappDir  = webappDir.deleteDir()
+
+  assert delWorkDir && delWebappDir
+  assert !delWorkDir.exists() && !delWebappDir.exists()
 }
 
 
