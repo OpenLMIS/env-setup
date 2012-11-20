@@ -110,7 +110,7 @@ task cleanTomcatWorkCache << {
   def delWebappDir  = webappDir.deleteDir()
 
   assert delWorkDir && delWebappDir
-  assert !delWorkDir.exists() && !delWebappDir.exists()
+  assert !workDir.exists() && !webappDir.exists()
 }
 
 
