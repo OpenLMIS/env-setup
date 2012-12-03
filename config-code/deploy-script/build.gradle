@@ -91,7 +91,7 @@ cargo {
 task deployOpenLmis(dependsOn: "setupDB") << {
   println("Deploying...")
   //  cargoStopLocal.execute()  // when it works, stop goes from ci
-  // tasks.migrateDB.execute()
+  tasks.migrateDB.execute()
   tasks.seed.execute()
 
   tasks.cleanTomcatWorkCache.execute()
@@ -184,8 +184,8 @@ task migrateDB() << {
   ant.flywayMigrate(driver: 'org.postgresql.Driver', url: "jdbc:postgresql://$databaseHostName:$databasePort/$dbName" , user: dbUser, password: dbPassword)
 }
 
-task seed(dependsOn: ["migrateDB"], type: Exec) {
+task seed(type: Exec) {
     environment("PGPASSWORD", dbPassword)
     println("setting up seed data..")
-    commandLine 'psql', '-U', dbUser, '--file', seedDir, '-w', dbName
+    commandLine 'psql', '-U', dbUser, '--file', seedDir+'/seed.sql', '-w', dbName
 }
