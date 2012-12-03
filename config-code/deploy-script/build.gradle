@@ -185,5 +185,6 @@ task migrateDB() << {
 
 task seed(dependsOn: ["migrateDB"], type: Exec) {
     environment("PGPASSWORD", dbPassword)
+    println("setting up seed data..")
     commandLine 'psql', '-U', dbUser, '--file', seedDir, '-w', dbName
 }
