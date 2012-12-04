@@ -1,0 +1,1 @@
+selinux_non_persistent :enable
