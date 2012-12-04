@@ -12,14 +12,30 @@ rpm -Uvh http://rbel.co/rbel6
 
 if [ ! -f /usr/bin/chef-client ]; then
 
-  yum -y install gcc gcc-c++ kernel-devel make wget libxslt-devel libxml2-devel git autoconf flex bison openssl-devel libcurl-devel readline-devel kernel-headers zlib-devel ruby ruby-devel ruby-libs ruby-irb ruby-rdoc ruby-ri unzip
+  yum -y install gcc gcc-c++ kernel-devel make wget libxslt-devel libxml2-devel git autoconf flex bison openssl-devel libcurl-devel readline-devel kernel-headers zlib-devel ruby ruby-devel ruby-libs ruby-irb ruby-rdoc ruby-ri unzip rubygems ntp
   
 fi
 
+#### CLOCK SYNC #####
+ntpdate pool.ntp.org
+chkconfig ntpd on
+service ntpd start
+
+#### Installing chef ####
+gem update --system
 gem install ohai --no-rdoc --no-ri --verbose
 gem install chef --no-rdoc --no-ri --verbose <%= bootstrap_version_string %>
 
 mkdir -p /etc/chef
+
+(
+cat <<'EOP'
+<%= validation_key %>
+EOP
+) > /tmp/validation.pem
+awk NF /tmp/validation.pem > /etc/chef/validation.pem
+rm /tmp/validation.pem
+
 
 (
 cat <<'EOP'
