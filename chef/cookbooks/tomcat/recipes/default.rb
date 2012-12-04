@@ -9,6 +9,13 @@
 
 include_recipe "sun_jdk"
 
+directory "/usr/tomcat" do
+  owner "root"
+  group "root"
+  mode "775"
+  action :create
+end
+
 cookbook_file "/tmp/apache-tomcat-7.0.33.tar.gz" do
   source "apache-tomcat-7.0.33.tar.gz"
   mode "0775"
