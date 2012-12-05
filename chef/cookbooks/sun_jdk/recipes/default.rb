@@ -26,6 +26,6 @@ execute "Install Java" do
 end
 
 execute "set_java_home" do
-  command 'echo "export PATH=$PATH:/usr/java/jdk1.7.0_09/bin" >> ~/.bashrc; echo "export JAVA_HOME=/usr/java/jdk1.7.0_09/bin" >> ~/.bashrc'
+  command 'echo "export PATH=$PATH:/usr/java/jdk1.7.0_09/bin" >> ~/.bashrc; echo "export JAVA_HOME=/usr/java/jdk1.7.0_09" >> ~/.bashrc'
   action :nothing
 end
