@@ -1,6 +1,6 @@
-maintainer       "ThoughtWorks - DevOps Team"
-maintainer_email "devops-in@thoughtworks.com"
-license          "ThoughtWorks OpenSource license"
-description      "Installs/Configures NRPE"
+maintainer       "YOUR_COMPANY_NAME"
+maintainer_email "YOUR_EMAIL"
+license          "All rights reserved"
+description      "Installs/Configures nagios_nrpe"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "1.0.2"
+version          "0.1.0"

@@ -1,10 +1,7 @@
 command[check_disk]=/usr/lib64/nagios/plugins/check_disk -w 20% -c 10% -e
 command[check_ssh]=/usr/lib64/nagios/plugins/check_ssh <%= node.fqdn %> 
-command[check_space]=/usr/lib64/nagios/plugins/check_space.rb
-command[check_inode]=/usr/lib64/nagios/plugins/check_inode.rb
-command[check_memory]=/usr/lib64/nagios/plugins/check_memory.rb
-command[check_procs]=/usr/lib64/nagios/plugins/check_procs.rb
-command[chef_stat]=/usr/lib64/nagios/plugins/chef_stat.rb 
-command[check_UBC]=/usr/lib64/nagios/plugins/check_UBC.rb
-command[check_convergence]=/usr/lib64/nagios/plugins/check_convergence
+command[check_space]=/usr/lib64/nagios/plugins/check_space
+command[check_inode]=/usr/lib64/nagios/plugins/check_inode
+command[check_memory]=/usr/lib64/nagios/plugins/check_memory
+command[check_procs]=/usr/lib64/nagios/plugins/check_procs
 command[check_load]=/usr/lib64/nagios/plugins/check_load -w <%= node.cpu.count+10 %> -c <%= node.cpu.count+15 %>
