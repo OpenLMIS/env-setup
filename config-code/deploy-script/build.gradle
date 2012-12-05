@@ -48,14 +48,14 @@ repositories {
 
 buildscript {
   repositories {
-      add(new org.apache.ivy.plugins.resolver.URLResolver()) {
-          name = 'GitHub'
-          addArtifactPattern 'http://cloud.github.com/downloads/[organisation]/[module]/[module]-[revision].[ext]'
-      }
+    add(new org.apache.ivy.plugins.resolver.URLResolver()) {
+      name = 'GitHub'
+      addArtifactPattern 'http://cloud.github.com/downloads/[organisation]/[module]/[module]-[revision].[ext]'
+    }
   }
 
   dependencies {
-      classpath 'bmuschko:gradle-cargo-plugin:0.5.6'
+    classpath 'bmuschko:gradle-cargo-plugin:0.5.6'
   }
 }
 
@@ -78,12 +78,12 @@ cargo {
   containerId = serverName
   port = Integer.valueOf(serverPort)
   deployable {
-      file = file(warDestination + File.separator + warName)
+    file = file(warDestination + File.separator + warName)
   }
 
   local {
-      homeDir = file(serverHome)
-      output = file(serverLogFile)
+    homeDir = file(serverHome)
+    output = file(serverLogFile)
   }
 }
 
@@ -112,12 +112,10 @@ task cleanTomcatWorkCache << {
   assert !workDir.exists() && !webappDir.exists()
 }
 
-
 task downloadFile << {
   println("Downloading war...")
   ant.get(src: warSourceUrl.replace('buildVersion', buildVersion) + warName, dest: warDestination, verbose: 'true')
   println("Downloaded")
-
 }
 
 task setupDB(dependsOn: ["createDB",clean]) << {
@@ -185,7 +183,7 @@ task migrateDB() << {
 }
 
 task seed(type: Exec) {
-    environment("PGPASSWORD", dbPassword)
-    println("setting up seed data..")
-    commandLine 'psql', '-U', dbUser, '--file', seedDir+'/seed.sql', '-w', dbName
+  environment("PGPASSWORD", dbPassword)
+  println("setting up seed data..")
+  commandLine 'psql', '-U', dbUser, '--file', seedDir+'/seed.sql', '-w', dbName
 }
