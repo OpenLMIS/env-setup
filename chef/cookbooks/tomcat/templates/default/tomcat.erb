@@ -1,0 +1,37 @@
+ #!/bin/bash
+    # description: Tomcat Server basic start/shutdown script
+    # processname: tomcat
+    JAVA_HOME=<%=node[:java][:home] %>
+    export JAVA_HOME
+    TOMCAT_HOME=<%=node[:tomcat][:home] %>
+    START_TOMCAT=<%=node[:tomcat][:startup_script] %>
+    STOP_TOMCAT=<%=node[:tomcat][:shutdown_script] %>
+    start() {
+    echo -n "Starting tomcat: "
+    cd $TOMCAT_HOME
+    ${START_TOMCAT}
+    echo "done."
+    }
+    stop() {
+    echo -n "Shutting down tomcat: "
+    
+    cd $TOMCAT_HOME
+    ${STOP_TOMCAT}
+    echo "done."
+    }
+    case "$1" in
+    start)
+    start
+    ;;
+    stop)
+    stop
+    ;;
+    restart)
+    stop
+    sleep 10
+    start
+    ;;
+    *)
+    echo "Usage: $0 {start|stop|restart}"
+    esac
+    exit 0

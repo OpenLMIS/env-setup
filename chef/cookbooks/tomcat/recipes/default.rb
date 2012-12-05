@@ -26,3 +26,15 @@ execute "Installing Tomcat tarball" do
   command "tar -xvf /tmp/apache-tomcat-7.0.33.tar.gz --directory=/usr/tomcat"
   action :nothing
 end
+
+template "/etc/init.d/tomcat" do
+  source "tomcat.erb"
+  owner "root"
+  group "root"
+  mode "0755"
+end
+
+service "tomcat" do
+  supports :start => true, :stop => :true, :restart =>true
+  action :start
+end
