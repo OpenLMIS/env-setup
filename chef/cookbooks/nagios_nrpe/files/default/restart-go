@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+/usr/bin/sudo /etc/init.d/go-agent restart
+exit 0
+

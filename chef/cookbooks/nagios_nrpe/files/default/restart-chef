@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+/usr/bin/sudo /usr/bin/chef-client > /tmp/chef_test.log
+echo -n "Chef Run Complete"
+exit 0
+

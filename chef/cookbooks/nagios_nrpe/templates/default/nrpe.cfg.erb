@@ -1,0 +1,21 @@
+<% if node.ipaddress == node['nagios']['server_ip'] %>
+allowed_hosts=<%=node['nagios']['server_ip']%>,<%=node['hw_nagios_server']%>
+<% else %>
+allowed_hosts=<%=node['nagios']['server_ip']%>
+<% end %>
+command[vigilance_monkey_warning]=/usr/lib64/nagios/plugins/check_dummy 1 "None of the cookbooks here have plugins!"
+command[vigilance_monkey_critical]=/usr/lib64/nagios/plugins/check_dummy 2 "None of the cookbooks here have plugins!"
+command_timeout=60
+connection_timeout=300
+debug=0
+dont_blame_nrpe=1
+include_dir=/etc/nrpe.d/
+log_facility=daemon
+nrpe_group=<%=@nrpe_user%>
+nrpe_user=<%=@nrpe_user%>
+<% if node.platform == "ubuntu" %>
+pid_file=/var/run/nagios/nrpe.pid
+<% else %>
+pid_file=/var/run/nrpe/nrpe.pid
+<% end %>
+server_port=5666

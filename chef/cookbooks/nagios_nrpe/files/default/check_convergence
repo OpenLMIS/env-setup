@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby                                                                                                                                                                                            
+require 'rubygems'
+require 'mixlib/json'
+require 'time'
+
+command_get_chef_statfiles="ls -t /var/chef/reports | head -1"
+latest_run_file=`#{command_get_chef_statfiles}`.strip
+exit_value=3
+
+if $?.success?
+	chef_data = Mixlib::JSON.parse(IO.read("/var/chef/reports/#{latest_run_file}"))
+	status = chef_data["success"]
+  chef_run_time = chef_run_time=Time.parse(chef_data["end_time"]).to_i
+  @delta_secs = Time.now.to_i - chef_run_time
+
+  if @delta_secs == nil
+    puts "Couldn't locate the node in Chef Server's Solr Search API."
+    exit 2
+  elsif @delta_secs < 4000
+    puts "CONVERGENCE OK: node converged in the last one hour.|gap=#{@delta_secs} secs"
+    exit 0
+  elsif @delta_secs < 87000
+    puts "CONVERGENCE WARNING: node converged more than an hour ago.|gap=#{@delta_secs/3600} mins"
+    exit 1
+  else
+    puts "CONVERGENCE CRITICAL: node has diverged since #{@delta_secs/86400} day(s)."
+    exit 2
+  end
+else
+  puts "CRITICAL Unable to execute #{command_get_chef_statfiles}"
+  exit_value=2 
+end
+exit exit_value 
