@@ -1,8 +1,3 @@
-###############################################################################
-# DEVCLOUD PRIMARY NAGIOS MONITORING NETWORK
-# COMMANDS.CFG - DO NOT MODIFY BY HAND
-###############################################################################
-
 define command{
 	command_name	notify-host-by-email
 	command_line	/usr/bin/printf "%b" "***** Nagios *****\n\nNotification Type: $NOTIFICATIONTYPE$\nHost: $HOSTNAME$\nState: $HOSTSTATE$\nAddress: $HOSTADDRESS$\nInfo: $HOSTOUTPUT$\n\nDate/Time: $LONGDATETIME$\n" | /bin/mail -s "** $NOTIFICATIONTYPE$ Host Alert: $HOSTNAME$ is $HOSTSTATE$ **" $CONTACTEMAIL$
@@ -23,17 +18,6 @@ define command {
 	command_line /usr/bin/perl /usr/libexec/pnp4nagios/process_perfdata.pl -d HOSTPERFDATA 
 	}
 
-define command { 
-	command_name restart-chef-client 
-	command_line /usr/lib64/nagios/plugins/eventhandlers/restart-chef-client \
-        $SERVICESTATE$ $SERVICESTATETYPE$ $SERVICEATTEMPT$ $HOSTADDRESS$
-	}
-
-define command { 
-	command_name restart-go-agent 
-	command_line /usr/lib64/nagios/plugins/eventhandlers/restart-go-agent \
-        $SERVICESTATE$ $SERVICESTATETYPE$ $SERVICEATTEMPT$ $HOSTADDRESS$ 
-	}
 ##### Nagios Checks #####
 
 define command{
@@ -72,42 +56,28 @@ define command{
 	}
 
 define command{
-	command_name     check_convergence
-	command_line     $USER1$/check_convergence -H $HOSTADDRESS$$
-	}
-
-define command{
 	command_name     check_load
 	command_line     $USER1$/check_load -H $HOSTADDRESS$ -r -w 90.00:94.99 -c 95.00:100.00
 	}
 
 define command{
 	command_name		check_space
-	command_line     $USER1$/check_space.rb -H $HOSTADDRESS$
+	command_line     $USER1$/check_space -H $HOSTADDRESS$
 	}
 
 define command{
 	command_name		check_inode
-	command_line     $USER1$/check_inode.rb -H $HOSTADDRESS$
+	command_line     $USER1$/check_inode -H $HOSTADDRESS$
 	}
 
 define command{
 	command_name     check_memory
-	command_line     $USER1$/check_memory.rb -H $HOSTADDRESS$
+	command_line     $USER1$/check_memory -H $HOSTADDRESS$
 	}
 
 define command{
 	command_name     check_procs
-	command_line     $USER1$/check_procs.rb -H $HOSTADDRESS$
+	command_line     $USER1$/check_procs -H $HOSTADDRESS$
 	}
 
-define command{
-	command_name     chef_stat
-	command_line     $USER1$/chef_stat.rb -H $HOSTADDRESS$
-	}
-
-define command{
-	command_name     check_UBC
-	command_line     $USER1$/check_UBC.rb -H $HOSTADDRESS$
-	}
 

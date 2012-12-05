@@ -1,8 +1,3 @@
-###############################################################################
-# DEVCLOUD PRIMARY NAGIOS MONITORING NETWORK
-# TEMPLATES.CFG - DO NOT MODIFY BY HAND
-###############################################################################
-
 define contact{
   name                            generic-contact
   service_notification_period     24x7
@@ -60,6 +55,4 @@ define service{
   notification_period             24x7
   register                        0
 	action_url /pnp4nagios/graph?host=$HOSTNAME$&srv=$SERVICEDESC$
-# add graphite URL to see graphs
-	_graphiteprefix             devcloud.service
 }

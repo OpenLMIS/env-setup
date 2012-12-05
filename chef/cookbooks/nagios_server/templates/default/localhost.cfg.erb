@@ -1,17 +1,8 @@
-###############################################################################
-# DEVCLOUD PRIMARY NAGIOS MONITORING NETWORK
-# LOCALHOST.CFG - DO NOT MODIFY BY HAND
-###############################################################################
-
 define host{
   use                     linux-server
   host_name               localhost
   alias                   localhost
-<% if node.virtualization['emulator'] == "openvz" and node.virtualization['role'] == "guest" %>
-  address              <%=node.network.interfaces['venet0:0'].peer%>
-<% else %>
   address              <%=node.ipaddress%>
-<% end %>
 }
 
 define hostgroup{
