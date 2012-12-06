@@ -31,6 +31,18 @@
 }
 <%end%>
 
+<% if node.chef_environment == "CI" %>
+ define service{
+  use                    generic-service
+  host_name          <%= node.fqdn %>
+  service_description    Apache Web Server Check
+  check_command          check_nrpe!check_apache
+  contact_groups         admins
+  notification_interval  2880          ;2 days
+  notification_period    workhours
+}
+<%end%>
+
 define service{
   use									 generic-service
   host_name				  <%=node.fqdn %>

@@ -26,7 +26,7 @@ template "/etc/nrpe.d/system.cfg" do
   notifies :run, "execute[restart nrpe]"; :immediately
 end
 
-["check_tomcat","check_postgresql","check_inode", "check_memory", "check_space", "check_procs"].each do |file|
+["check_apache","check_tomcat","check_postgresql","check_inode", "check_memory", "check_space", "check_procs"].each do |file|
   cookbook_file "/usr/lib64/nagios/plugins/#{file}" do
     source file
     owner "root"

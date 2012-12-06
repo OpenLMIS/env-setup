@@ -89,3 +89,8 @@ define command{
 	command_name     check_tomcat
 	command_line     $USER1$/check_tomcat -H $HOSTADDRESS$
 	}
+
+define command{
+	command_name     check_apache
+	command_line     $USER1$/check_apache -H $HOSTADDRESS$
+	}
