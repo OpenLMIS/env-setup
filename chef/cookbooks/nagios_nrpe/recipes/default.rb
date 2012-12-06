@@ -23,16 +23,16 @@ template "/etc/nrpe.d/system.cfg" do
   owner "root"
   group "root"
   mode "0644"
-  notifies :restart, "service[nrpe]", :immediately
+  notifies :run, "execute[restart nrpe]"; :immediately
 end
 
-["check_inode", "check_memory", "check_space", "check_procs"].each do |file|
+["check_tomcat","check_postgresql","check_inode", "check_memory", "check_space", "check_procs"].each do |file|
   cookbook_file "/usr/lib64/nagios/plugins/#{file}" do
     source file
     owner "root"
     group "root"
     mode "755"
-    notifies :restart, "service[nrpe]", :immediately
+    notifies :run, "execute[restart nrpe]"; :immediately
   end
 end
 
@@ -41,7 +41,7 @@ execute "open port for nagios" do
   action :nothing
 end
 
-service "nrpe" do
-  supports :restart => true
-  action [:enable, :start]
+execute "restart nrpe" do
+  command "service nrpe stop; /usr/sbin/nrpe -c /etc/nagios/nrpe.cfg -d"
+  action :nothing
 end

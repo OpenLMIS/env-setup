@@ -1,7 +1,11 @@
 command[check_disk]=/usr/lib64/nagios/plugins/check_disk -w 20% -c 10% -e
-command[check_ssh]=/usr/lib64/nagios/plugins/check_ssh <%= node.fqdn %> 
+command[check_ssh]=/usr/lib64/nagios/plugins/check_ssh <%= node.ipaddress %> 
 command[check_space]=/usr/lib64/nagios/plugins/check_space
 command[check_inode]=/usr/lib64/nagios/plugins/check_inode
 command[check_memory]=/usr/lib64/nagios/plugins/check_memory
 command[check_procs]=/usr/lib64/nagios/plugins/check_procs
+command[check_QA]=/usr/lib64/nagios/plugins/check_http -H qa.221.134.198.28.xip.io -p 8080
+command[check_UAT]=/usr/lib64/nagios/plugins/check_http -H uat.221.134.198.28.xip.io -p 8080
+command[check_postgresql]=/usr/lib64/nagios/plugins/check_postgresql
+command[check_tomcat]=/usr/lib64/nagios/plugins/check_tomcat
 command[check_load]=/usr/lib64/nagios/plugins/check_load -w <%= node.cpu.count+10 %> -c <%= node.cpu.count+15 %>

@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+postgresql_svc_check="service postgresql-9.1 status"
+status=`#{postgresql_svc_check}`
+exit_value=3
+
+if status.include?("running")
+  pid=status.split(" ")[1].split(")")[0]
+  puts "PostgreSQL is running with pid " + pid
+  exit_value=0
+else
+  puts status
+  exit_value=2
+end
+exit exit_value

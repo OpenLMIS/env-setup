@@ -1,0 +1,14 @@
+#!/usr/bin/ruby
+
+command=`netstat -na | grep 8080 | awk '{print $6}'`
+status=command.strip()
+exit_value=4
+
+if status == "LISTEN"
+  puts "Tomcat is listening on port 8080"
+  exit_value=0
+else
+  puts "Tomcat is not listening on port 8080"
+  exit_value=2
+end
+exit exit_value
