@@ -80,4 +80,12 @@ define command{
 	command_line     $USER1$/check_procs -H $HOSTADDRESS$
 	}
 
+define command{
+	command_name     check_postgresql
+	command_line     $USER1$/check_postgresql -H $HOSTADDRESS$
+	}
 
+define command{
+	command_name     check_tomcat
+	command_line     $USER1$/check_tomcat -H $HOSTADDRESS$
+	}

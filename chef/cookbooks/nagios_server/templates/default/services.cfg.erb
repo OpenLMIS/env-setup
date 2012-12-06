@@ -1,5 +1,34 @@
 <% @nodes_from_solr.each do |node| %>
 ### <%= node.fqdn %> ###
+
+<% if node.recipes.include?("nagios_server") %>
+  define service{
+    use									 generic-service
+    host_name				    <%=node.fqdn %>
+    service_description	 Check App on QA
+    check_command				 check_nrpe!check_QA
+    contact_groups			 admins
+  }
+
+  define service{
+    use									 generic-service
+    host_name				    <%=node.fqdn %>
+    service_description	 Check App on UAT
+    check_command				 check_nrpe!check_UAT
+    contact_groups			 admins
+  }
+<%else%>
+ define service{
+  use                    generic-service
+  host_name          <%= node.fqdn %>
+  service_description    Tomcat Web Server Check
+  check_command          check_nrpe!check_tomcat
+  contact_groups         admins
+  notification_interval  2880          ;2 days
+  notification_period    workhours
+}
+<%end%>
+
 define service{
   use									 generic-service
   host_name				  <%=node.fqdn %>
@@ -13,6 +42,16 @@ define service{
   host_name          <%= node.fqdn %>
   service_description    Disk Space
   check_command          check_nrpe!check_disk
+  contact_groups         admins
+  notification_interval  2880          ;2 days
+  notification_period    workhours
+}
+
+define service{
+  use                    generic-service
+  host_name          <%= node.fqdn %>
+  service_description    PostgreSQL Check
+  check_command          check_nrpe!check_postgresql
   contact_groups         admins
   notification_interval  2880          ;2 days
   notification_period    workhours

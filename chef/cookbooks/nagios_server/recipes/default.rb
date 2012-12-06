@@ -11,11 +11,9 @@ include_recipe "httpd"
   package pkg 
 end
 
-["nagios", "httpd"].each do |svc|
-  service svc do
-    supports :restart => true
-    action [:enable, :start]
-  end
+service "httpd" do
+  supports :restart => true
+  action [:enable, :start]
 end
 
 file "/etc/nagios/passwd" do
@@ -60,7 +58,8 @@ nodes_from_solr = search(:node, "*:*")
     group "root"
     mode "644"
     variables(:nodes_from_solr => nodes_from_solr)
-    notifies :restart, "service[nrpe]"
+    notifies :run, "execute[restart nrpe]", :immediately
+    notifies :run, "execute[restart nagios]", :immediately
   end
 end
 
@@ -68,5 +67,12 @@ execute "nagios-config-check" do
   command "nagios -v /etc/nagios/nagios.cfg"
 end
 
+execute "restart nrpe" do
+  command "service nrpe stop; /usr/sbin/nrpe -c /etc/nagios/nrpe.cfg -d"
+  action :nothing
+end
 
-
+execute "restart nagios" do
+  command "service nagios stop; /usr/sbin/nagios -d /etc/nagios/nagios.cfg"
+  action :nothing
+end
