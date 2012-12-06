@@ -17,7 +17,9 @@
     check_command				 check_nrpe!check_UAT
     contact_groups			 admins
   }
-<%else%>
+<%end%>
+
+<% if node.chef_environment != "development" && node.chef_environment != "CI" %>
  define service{
   use                    generic-service
   host_name          <%= node.fqdn %>
