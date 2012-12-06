@@ -1,0 +1,14 @@
+#!/usr/bin/ruby
+
+command=`ps U jenkins | grep jenkins.war |wc -l`
+exit_value=4
+
+if command.strip == "1"
+	puts "jenkins is running"
+	exit_value=0
+elseir
+	puts "jenkins is stopped"
+	exit_value=2
+end
+
+exit exit_value

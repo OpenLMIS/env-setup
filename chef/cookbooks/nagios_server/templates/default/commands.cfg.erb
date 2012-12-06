@@ -94,3 +94,9 @@ define command{
 	command_name     check_apache
 	command_line     $USER1$/check_apache -H $HOSTADDRESS$
 	}
+
+
+define command{
+        command_name     check_jenkins
+        command_line     $USER1$/check_jenkins -H $HOSTADDRESS$
+        }

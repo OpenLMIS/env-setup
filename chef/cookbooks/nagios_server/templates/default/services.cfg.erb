@@ -41,6 +41,15 @@
   notification_interval  2880          ;2 days
   notification_period    workhours
 }
+define service{
+  use                    generic-service
+  host_name          <%= node.fqdn %>
+  service_description    Jenkins CI check
+  check_command          check_nrpe!check_jenkins
+  contact_groups         admins
+  notification_interval  2880          ;2 days
+  notification_period    workhours
+}
 <%end%>
 
 define service{

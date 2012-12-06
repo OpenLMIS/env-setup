@@ -1,0 +1,15 @@
+#!/usr/bin/ruby
+
+command=`service httpd status`
+status=command.split(" ")[4]
+exit_value = 4
+
+if status == "running..."
+	puts command 
+	exit_value=0
+else
+	puts command
+	exit_value = 2
+end
+exit exit_value
+
