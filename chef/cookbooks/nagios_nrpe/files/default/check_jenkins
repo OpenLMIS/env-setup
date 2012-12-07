@@ -3,7 +3,7 @@
 command=`ps U jenkins | grep jenkins.war |wc -l`
 exit_value=3
 
-if command.strip == "1"
+if command.strip != "0"
 	puts "Jenkins is running | status=1"
 	exit_value=0
 else
