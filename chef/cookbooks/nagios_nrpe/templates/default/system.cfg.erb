@@ -10,4 +10,6 @@ command[check_postgresql]=/usr/lib64/nagios/plugins/check_postgresql
 command[check_tomcat]=/usr/lib64/nagios/plugins/check_tomcat
 command[check_apache]=/usr/lib64/nagios/plugins/check_apache
 command[check_jenkins]=/usr/lib64/nagios/plugins/check_jenkins
+command[check_QA_Connections]=/usr/lib64/nagios/plugins/check_tcp -H qa.221.134.198.28.xip.io -p 8080
+command[check_UAT_Connections]=/usr/lib64/nagios/plugins/check_tcp -H uat.221.134.198.28.xip.io -p 8080
 command[check_load]=/usr/lib64/nagios/plugins/check_load -w <%= node.cpu.count+10 %> -c <%= node.cpu.count+15 %>

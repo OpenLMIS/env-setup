@@ -13,10 +13,27 @@
   define service{
     use									 generic-service
     host_name				    <%=node.fqdn %>
+    service_description	 Check TCP Connections on QA
+    check_command				 check_nrpe!check_QA_Connections
+    contact_groups			 admins
+  }
+
+  define service{
+    use									 generic-service
+    host_name				    <%=node.fqdn %>
     service_description	 Check App on UAT
     check_command				 check_nrpe!check_UAT
     contact_groups			 admins
   }
+
+  define service{
+    use									 generic-service
+    host_name				    <%=node.fqdn %>
+    service_description	 Check TCP Connections on UAT
+    check_command				 check_nrpe!check_UAT_Connections
+    contact_groups			 admins
+  }
+
 <%end%>
 
 <% if node.chef_environment != "development" && node.chef_environment != "CI" %>

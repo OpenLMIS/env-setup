@@ -51,7 +51,7 @@ end
 
 nodes_from_solr = search(:node, "*:*")
 
-["hosts", "services", "commands", "localhost"].each do |obj|
+["templates","hosts", "services", "commands", "localhost"].each do |obj|
   template "/etc/nagios/objects/#{obj}.cfg" do
     source "#{obj}.cfg.erb"
     owner "root"
@@ -69,10 +69,10 @@ end
 
 execute "restart nrpe" do
   command "service nrpe stop; /usr/sbin/nrpe -c /etc/nagios/nrpe.cfg -d"
-  action :nothing
+  action :run
 end
 
 execute "restart nagios" do
   command "service nagios stop; /usr/sbin/nagios -d /etc/nagios/nagios.cfg"
-  action :nothing
+  action :run
 end
