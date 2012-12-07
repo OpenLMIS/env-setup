@@ -6,10 +6,10 @@ exit_value=3
 
 if status.include?("running")
   pid=status.split(" ")[1].split(")")[0]
-  puts "PostgreSQL is running with pid " + pid
+  puts "PostgreSQL is running with pid #{pid} | status=1"
   exit_value=0
 else
-  puts status
+  puts "PostgreSQL #{status} |  | status=0"
   exit_value=2
 end
 exit exit_value

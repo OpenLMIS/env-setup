@@ -4,10 +4,10 @@ command=`netstat -na | grep 8080 | awk '{print $6}'`
 exit_value=4
 
 if command.include?("LISTEN")
-  puts "Tomcat is listening on port 8080"
+  puts "Tomcat is listening on port 8080 | status=1"
   exit_value=0
 else
-  puts "Tomcat is not listening on port 8080"
+  puts "Tomcat is not listening on port 8080 | status=0"
   exit_value=2
 end
 exit exit_value

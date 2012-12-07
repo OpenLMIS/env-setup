@@ -4,10 +4,10 @@ command=`netstat -na | grep 80 | awk '{print $6}'`
 exit_value=4
 
 if command.include?("LISTEN")
-  puts "Apache is listening on port 80"
+  puts "Apache is listening on port 80 | status=1"
   exit_value=0
 else
-  puts "Apache is not listening on port 80"
+  puts "Apache is not listening on port 80 | status=0"
   exit_value=2
 end
 exit exit_value
