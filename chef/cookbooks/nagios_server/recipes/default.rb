@@ -50,6 +50,9 @@ cookbook_file "/var/www/html/index.html" do
 end
 
 nodes_from_solr = search(:node, "*:*")
+CI_servers = search(:node, "chef_environment:CI")
+QA_servers = search(:node, "chef_environment:QA")
+UAT_servers = search(:node, "chef_environment:UAT")
 
 ["templates","hosts", "services", "commands", "localhost"].each do |obj|
   template "/etc/nagios/objects/#{obj}.cfg" do
@@ -57,7 +60,7 @@ nodes_from_solr = search(:node, "*:*")
     owner "root"
     group "root"
     mode "644"
-    variables(:nodes_from_solr => nodes_from_solr)
+    variables(:nodes_from_solr => nodes_from_solr, :CI_servers => CI_servers, :QA_servers => QA_servers, :UAT_servers => UAT_servers)
     notifies :run, "execute[restart nrpe]", :immediately
     notifies :run, "execute[restart nagios]", :immediately
   end

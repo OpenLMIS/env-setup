@@ -8,3 +8,27 @@ define host{
 }
 <%end %>
 
+<% if @CI_servers.size != 0 %>
+define hostgroup{
+	hostgroup_name    CI_servers
+	alias       CI Servers
+	members       <%=@CI_servers.collect{|CI_servers| CI_servers.fqdn}.join(",")%>
+}
+<% end %>
+
+<% if @QA_servers.size != 0 %>
+define hostgroup{
+	hostgroup_name    QA_servers
+	alias       QA Servers
+	members       <%=@QA_servers.collect{|QA_servers| QA_servers.fqdn}.join(",")%>
+}
+<% end %>
+
+<% if @UAT_servers.size != 0 %>
+define hostgroup{
+	hostgroup_name    UAT_servers
+	alias       UAT Servers
+	members       <%=@UAT_servers.collect{|UAT_servers| UAT_servers.fqdn}.join(",")%>
+}
+<% end %>
+
