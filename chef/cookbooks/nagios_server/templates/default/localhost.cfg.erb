@@ -8,7 +8,7 @@ define host{
 define hostgroup{
   hostgroup_name          nagios-server
   alias                   Nagios Server
-  members                 localhost
+  members                 localhost, <%=node.fqdn %>
 }
 
 define service{
