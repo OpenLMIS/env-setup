@@ -4,4 +4,4 @@ default_attributes(
                    "nagios" => {
                      "server_ip" => "192.168.34.5"}
                   )
-run_list  "recipe[chef-client]","recipe[nagios_nrpe]"
+run_list  "recipe[chef-client]","recipe[nagios_nrpe]", "recipe[htop]"
