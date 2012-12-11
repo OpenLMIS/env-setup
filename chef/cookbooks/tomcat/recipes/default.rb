@@ -23,7 +23,7 @@ cookbook_file "/tmp/apache-tomcat-7.0.33.tar.gz" do
 end
 
 execute "Installing Tomcat tarball" do
-  command "tar -xvf /tmp/apache-tomcat-7.0.33.tar.gz --directory=/usr/tomcat"
+  command "tar -xvf /tmp/apache-tomcat-7.0.33.tar.gz --directory=#{node[:webapp][:home]}"
   action :nothing
 end
 
