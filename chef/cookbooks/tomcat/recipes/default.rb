@@ -9,21 +9,16 @@
 
 include_recipe "sun_jdk"
 
-directory "/usr/tomcat" do
-  owner "root"
-  group "root"
-  mode "775"
-  action :create
-end
-
 cookbook_file "/tmp/apache-tomcat-7.0.33.tar.gz" do
   source "apache-tomcat-7.0.33.tar.gz"
+  owner "openlmis"
+  group "openlmis"
   mode "0775"
   notifies :run, "execute[Installing Tomcat tarball]", :immediately
 end
 
 execute "Installing Tomcat tarball" do
-  command "tar -xvf /tmp/apache-tomcat-7.0.33.tar.gz --directory=#{node[:webapp][:home]}"
+  command "tar -xvf /tmp/apache-tomcat-7.0.33.tar.gz --directory=#{node[:webapp][:home]}; chown -R openlmis:openlmis #{node[:webapp][:home]}/apache-tomcat-7.0.33"
   action :nothing
 end
 
@@ -32,9 +27,10 @@ template "/etc/init.d/tomcat" do
   owner "root"
   group "root"
   mode "0755"
+  notifies :run, "execute[Start tomcat]", :immediately
 end
 
-service "tomcat" do
-  supports :start => true, :stop => :true, :restart =>true
-  action :start
+execute "Start tomcat" do
+  command "chkconfig --add tomcat; chkconfig tomcat on; /etc/init.d/tomcat start"
+  action :nothing
 end
