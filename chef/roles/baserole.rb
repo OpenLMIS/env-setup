@@ -1,3 +1,3 @@
 name "baserole"
 description "Installs basic packages for OpenLMIS"
-run_list  "recipe[git]", "recipe[sun_jdk]", "recipe[gradle]", "recipe[postgres]", "recipe[tomcat]", "role[nagios_nrpe]"
+run_list  "recipe[git]", "recipe[java]", "recipe[gradle]", "recipe[postgres]", "recipe[tomcat]", "role[nagios_nrpe]", "recipe[openlmis_config]", "recipe[jenkins-build-slave]"
