@@ -26,6 +26,11 @@ gem update --system
 gem install ohai --no-rdoc --no-ri --verbose
 gem install chef --no-rdoc --no-ri --verbose <%= bootstrap_version_string %>
 
+
+#### Create OpenLMIS User ####
+useradd openlmis -c 'For eLMIS Application'
+
+#### Chef Setup ####
 mkdir -p /etc/chef
 
 (
