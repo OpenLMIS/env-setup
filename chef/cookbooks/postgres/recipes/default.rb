@@ -15,6 +15,13 @@ package "postgresql91" do
   action :install
 end
 
+cookbook_file "/var/lib/pgsql/9.1/data/pg_hba.conf" do
+  source "pg_hba.conf"
+  owner "postgres"
+  group "postgres"
+  mode "0600"
+end
+
 package "postgresql91-server" do
   action :install
   notifies :run, "execute[postgres_initialize_db]", :immediately
