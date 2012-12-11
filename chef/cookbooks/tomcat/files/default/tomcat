@@ -17,7 +17,7 @@
 source /etc/environment
 . /etc/init.d/functions
 
-RUN_AS_USER=<%=node[:webapp][:user]%> # Adjust run user here
+RUN_AS_USER=openlmis # Adjust run user here
 CATALINA_HOME=/home/$RUN_AS_USER/apache-tomcat-7.0.33
 
 start() {

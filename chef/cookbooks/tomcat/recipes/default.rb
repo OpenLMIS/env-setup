@@ -7,8 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "sun_jdk"
-
 cookbook_file "/tmp/apache-tomcat-7.0.33.tar.gz" do
   source "apache-tomcat-7.0.33.tar.gz"
   owner "openlmis"
@@ -22,8 +20,8 @@ execute "Installing Tomcat tarball" do
   action :nothing
 end
 
-template "/etc/init.d/tomcat" do
-  source "tomcat.erb"
+cookbook_file "/etc/init.d/tomcat" do
+  source "tomcat"
   owner "root"
   group "root"
   mode "0755"
