@@ -21,6 +21,7 @@ script "Gradle Installation" do
 end
 
 execute "Set gradle home" do
-  command "export PATH=#{node[:webapp][:home]}/gradle-1.3/bin:$PATH"
+  command "echo 'export PATH=#{node[:webapp][:home]}/gradle-1.3/bin:$PATH' >> /etc/bashrc"
+  not_if "grep gradle-1.3 /etc/bashrc"
   action :nothing
 end
