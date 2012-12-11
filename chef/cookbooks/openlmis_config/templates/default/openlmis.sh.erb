@@ -1,0 +1,38 @@
+## WAR related config loaded from Environment Var
+LMIS_WAR_SOURCE_URL='http://openlmis01.thoughtworks.com:8080/job/1.OpenLMIS/buildVersion/artifact/modules/openlmis-web/build/libs/'
+export LMIS_WAR_SOURCE_URL
+
+LMIS_WAR_DESTINATION="$HOME/<%=node[:tomcat_package]%>/webapps/"
+export LMIS_WAR_DESTINATION
+
+LMIS_SERVER_HOME="$HOME/<%=node[:tomcat_package]%>/"
+export LMIS_SERVER_HOME
+
+LMIS_SERVER_NAME='tomcat7x'
+export LMIS_SERVER_NAME
+
+LMIS_SERVER_PORT='8080'
+export LMIS_SERVER_PORT
+
+
+## DB related config loaded from Environment Var
+LMIS_DB_NAME='open_lmis'
+export LMIS_DB_NAME
+
+LMIS_DB_USER='postgres'
+export LMIS_DB_USER
+
+LMIS_DB_PASSWORD='p@ssw0rd'
+export LMIS_DB_PASSWORD
+
+LMIS_DB_HOSTNAME='localhost'
+export LMIS_DB_HOSTNAME
+
+LMIS_DB_PORT='5432'
+export LMIS_DB_PORT
+
+LMIS_DB_JAR_URL='http://openlmis01.thoughtworks.com:8080/job/1.OpenLMIS/buildVersion/artifact/modules/db/build/libs/'
+export LMIS_DB_JAR_URL
+
+LMIS_DB_JAR_DESTINATION="$HOME/deploy"
+export LMIS_DB_JAR_DESTINATION
