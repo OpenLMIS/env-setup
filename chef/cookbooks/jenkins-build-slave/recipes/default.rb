@@ -16,5 +16,5 @@ end
 package "jenkins"
 
 service "jenkins" do
-  action :start
+  action :enable
 end
