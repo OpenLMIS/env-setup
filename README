@@ -21,7 +21,7 @@ Maintaining DevOps related Project requirements
 SETUP
 =====
 * Set up a chef server as described in http://blog.frameos.org/2011/05/19/installing-chef-server-0-10-in-rhel-6-scientificlinux-6/
-* Set up your base machine as a knife client 
+* Set up your base machine as a knife client. Find more on chef http://wiki.opscode.com/display/chef/Chef+Basics 
 * Bootstrap a new node using ./scripts/bootstrap-templates/centos6.rb. This will register the node to the chef server.
 * Upload cookbooks from ./chef/cookbooks to the chef server
 * Upload roles from ./chef/roles to the chef server
