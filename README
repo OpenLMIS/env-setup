@@ -8,19 +8,22 @@
 |        | |                                           |
 |        |_|                                           |
 |                                                      |
-|   env-setup ~ auto-bot                               |
+|   env-setup                                          |
 ;======================================================;
 
-currently this is mainly focussed to RHEL6/CentOS6 distros
+Currently this is mainly focussed to RHEL6/CentOS6 distros
 
-maintaining DevOps related Project requirements
+Maintaining DevOps related Project requirements
 
-.\rough-sketch => initiated tasks to be automated gradually
+* Requirements : ruby, chef, knife
+  ============
 
-
-
-.\puppet       => will be used for ConfigAutomation
-
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-will be remove in some time
-.\config-code  => the automated configuration management code
+SETUP
+=====
+* Set up a chef server as described in http://blog.frameos.org/2011/05/19/installing-chef-server-0-10-in-rhel-6-scientificlinux-6/
+* Set up your base machine as a knife client 
+* Bootstrap a new node using ./scripts/bootstrap-templates/centos6.rb. This will register the node to the chef server.
+* Upload cookbooks from ./chef/cookbooks to the chef server
+* Upload roles from ./chef/roles to the chef server
+* Run baserole on the newly set up node
+* Node is ready for the application to be deployed.
