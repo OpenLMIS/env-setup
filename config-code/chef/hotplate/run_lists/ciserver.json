@@ -1,6 +1,0 @@
-{
-  "run_list": [
-		  "recipe[java::install]",
-		  "recipe[git::install]",
-	      ]
-}
