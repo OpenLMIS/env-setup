@@ -1,6 +1,6 @@
 name "nagios_server"
 description "Setup of nagios server"
-run_list "recipe[chef-client]","recipe[nagios_nrpe]","recipe[nagios_server]"
+run_list "recipe[git]","recipe[htop]","recipe[chef-client]","recipe[nagios_nrpe]","recipe[nagios_server]"
 default_attributes(
                    "nagios" => {
                      "server_ip" => "192.168.34.5",
