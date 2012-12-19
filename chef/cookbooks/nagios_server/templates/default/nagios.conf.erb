@@ -1,5 +1,5 @@
 ScriptAlias /nagios/cgi-bin/ "/usr/lib64/nagios/cgi-bin/"
-Listen <%= node[:fqdn] %>:80
+Listen <%= node["fqdn"] %>:80
 <Directory "/usr/lib64/nagios/cgi-bin/">
 #  SSLRequireSSL
    Options ExecCGI

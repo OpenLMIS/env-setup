@@ -1,2 +1,2 @@
-node[:webapp]={}
-node[:webapp][:home]="/home/openlmis"
+node["webapp"]={}
+node["webapp"]["home"]="/home/openlmis"

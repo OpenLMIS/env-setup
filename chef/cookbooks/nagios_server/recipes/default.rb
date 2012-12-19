@@ -49,10 +49,15 @@ cookbook_file "/var/www/html/index.html" do
   mode "0755"
 end
 
-nodes_from_solr = search(:node, "*:*")
-CI_servers = search(:node, "chef_environment:CI")
-QA_servers = search(:node, "chef_environment:QA")
-UAT_servers = search(:node, "chef_environment:UAT")
+if Chef::Config[:solo]
+  Chef::Log.error("This Nagios cookbook cannot run with Chef Solo as it depends on Search.")
+  nodes_from_solr = []
+else
+  nodes_from_solr = search(:node, "*:*")
+  CI_servers = search(:node, "chef_environment:CI")
+  QA_servers = search(:node, "chef_environment:QA")
+  UAT_servers = search(:node, "chef_environment:UAT")
+end
 
 ["templates","hosts", "services", "commands", "localhost"].each do |obj|
   template "/etc/nagios/objects/#{obj}.cfg" do

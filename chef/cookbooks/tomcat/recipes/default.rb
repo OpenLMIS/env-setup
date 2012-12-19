@@ -16,7 +16,7 @@ cookbook_file "/tmp/apache-tomcat-7.0.33.tar.gz" do
 end
 
 execute "Installing Tomcat tarball" do
-  command "tar -xvf /tmp/apache-tomcat-7.0.33.tar.gz --directory=#{node[:webapp][:home]}; chown -R openlmis:openlmis #{node[:webapp][:home]}/apache-tomcat-7.0.33"
+  command "tar -xvf /tmp/apache-tomcat-7.0.33.tar.gz --directory=#{node["webapp"]["home"]}; chown -R openlmis:openlmis #{node["webapp"]["home"]}/apache-tomcat-7.0.33"
   action :nothing
 end
 
