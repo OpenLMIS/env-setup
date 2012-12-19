@@ -1,6 +1,6 @@
-maintainer       "ThoughtWorks - DevOps Team"
-maintainer_email "devops-in@thoughtworks.com"
+maintainer       "ThoughtWorks - DevOps Team | Pratima Singh, Vinay Mor"
+maintainer_email "pratima@thoughtworks.com, vinaymor@thoughtworks.com"
 license          "ThoughtWorks OpenSource license"
-description      "Installs/Configures <package name>"
+description      "Installs/Configures httpd"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          "1.0.0"

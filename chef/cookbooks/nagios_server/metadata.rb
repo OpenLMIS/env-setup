@@ -1,8 +1,8 @@
-maintainer       "YOUR_COMPANY_NAME"
-maintainer_email "YOUR_EMAIL"
-license          "All rights reserved"
-description      "Installs/Configures nagios_server"
+maintainer       "ThoughtWorks - DevOps Team | Pratima Singh, Vinay Mor"
+maintainer_email "pratima@thoughtworks.com, vinaymor@thoughtworks.com"
+license          "ThoughtWorks OpenSource license"
+description      "Installs/Configures Nagios Server"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "0.1.0"
+version          "1.0.0"
 
 depends "httpd"

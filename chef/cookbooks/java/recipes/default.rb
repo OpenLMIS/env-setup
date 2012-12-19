@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: sun_jdk
+# Cookbook Name::java
 # Recipe:: default
 #
-# Copyright 2011, YOUR_COMPANY_NAME
+# Copyright 2012
 #
 # All rights reserved - Do Not Redistribute
 #
