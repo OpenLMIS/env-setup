@@ -15,7 +15,6 @@ template "/etc/nagios/nrpe.cfg" do
   owner "root"
   group "root"
   mode "0644"
-  notifies :run, "execute[open port for nagios]", :immediately
 end
 
 template "/etc/nrpe.d/system.cfg" do
@@ -36,10 +35,10 @@ end
   end
 end
 
-execute "open port for nagios" do
-  command "iptables -I INPUT -p tcp -m tcp --dport 5666 -j ACCEPT"
-  action :nothing
-end
+#execute "open port for nagios" do
+#  command "iptables -I INPUT -p tcp -m tcp --dport 5666 -j ACCEPT"
+#  action :run
+#end
 
 execute "restart nrpe" do
   command "service nrpe stop; /usr/sbin/nrpe -c /etc/nagios/nrpe.cfg -d"
