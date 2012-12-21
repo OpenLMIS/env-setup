@@ -15,14 +15,20 @@ package "postgresql91" do
   action :install
 end
 
-["postgresql.conf", "pg_hba.conf"].each do |config_file|
-  template "/var/lib/pgsql/9.1/data/#{config_file}" do
-    source "#{config_file}.erb"
-    owner "postgres"
-    group "postgres"
-    mode "0600"
-    notifies :restart, "service[postgresql-9.1]", :immediately
-  end
+cookbook_file "/var/lib/pgsql/9.1/data/postgresql.conf" do
+  source "postgresql.conf"
+  owner "postgres"
+  group "postgres"
+  mode "0600"
+  notifies :restart, "service[postgresql-9.1]", :immediately
+end
+
+template "/var/lib/pgsql/9.1/data/pg_hba.conf" do
+  source "pg_hba.conf.erb"
+  owner "postgres"
+  group "postgres"
+  mode "0600"
+  notifies :restart, "service[postgresql-9.1]", :immediately
 end
 
 package "postgresql91-server" do
