@@ -15,11 +15,14 @@ package "postgresql91" do
   action :install
 end
 
-cookbook_file "/var/lib/pgsql/9.1/data/pg_hba.conf" do
-  source "pg_hba.conf"
-  owner "postgres"
-  group "postgres"
-  mode "0600"
+["postgresql.conf", "pg_hba.conf"].each do |config_file|
+  template "/var/lib/pgsql/9.1/data/#{config_file}" do
+    source "#{config_file}.erb"
+    owner "postgres"
+    group "postgres"
+    mode "0600"
+    notifies :restart, "service[postgresql-9.1]", :immediately
+  end
 end
 
 package "postgresql91-server" do
@@ -31,6 +34,11 @@ execute "postgres_initialize_db" do
   command "service postgresql-9.1 initdb"
   action :nothing
 end
+
+#execute "open port for postgres" do
+#  command "iptables -I INPUT -p tcp -m tcp --dport 5432 -j ACCEPT"
+#  action :run
+#end
 
 service "postgresql-9.1" do
   supports :status => true, :restart => true
