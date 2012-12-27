@@ -25,10 +25,16 @@ cookbook_file "/etc/init.d/tomcat" do
   owner "root"
   group "root"
   mode "0755"
-  notifies :run, "execute[Start tomcat]", :immediately
+  notifies :run, "execute[Add tomcat to chkconfig]", :immediately
 end
 
-execute "Start tomcat" do
-  command "chkconfig --add tomcat; chkconfig tomcat on; /etc/init.d/tomcat start"
+execute "Add tomcat to chkconfig" do
+  command "chkconfig --add tomcat; chkconfig tomcat on"
   action :nothing
+  notifies :start, "service[tomcat]", :immediately
+end
+
+service "tomcat" do
+  supports :start => true, :stop => true, :restart => true
+  action :start
 end
