@@ -26,9 +26,12 @@ gem update --system
 gem install ohai --no-rdoc --no-ri --verbose
 gem install chef --no-rdoc --no-ri --verbose <%= bootstrap_version_string %>
 
-
 #### Create OpenLMIS User ####
-useradd openlmis -c 'For eLMIS Application'
+useradd openlmis -c "For eLMIS Application"
+
+#### Remove tty from sudoers defaults ####
+echo "openlmis        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers
+sed -i "s/Defaults    requiretty/#Defaults    requiretty/g" /etc/sudoers
 
 #### Chef Setup ####
 mkdir -p /etc/chef
@@ -40,7 +43,6 @@ EOP
 ) > /tmp/validation.pem
 awk NF /tmp/validation.pem > /etc/chef/validation.pem
 rm /tmp/validation.pem
-
 
 (
 cat <<'EOP'
