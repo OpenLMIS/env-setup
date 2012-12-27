@@ -15,12 +15,17 @@ package "postgresql91" do
   action :install
 end
 
+link "/etc/init.d/postgresql" do
+  to "/etc/init.d/postgresql-9.1"
+  not_if "test -f /etc/init.d/postgresql"
+end
+
 cookbook_file "/var/lib/pgsql/9.1/data/postgresql.conf" do
   source "postgresql.conf"
   owner "postgres"
   group "postgres"
   mode "0600"
-  notifies :restart, "service[postgresql-9.1]", :immediately
+  notifies :restart, "service[postgresql]", :immediately
 end
 
 template "/var/lib/pgsql/9.1/data/pg_hba.conf" do
@@ -28,7 +33,7 @@ template "/var/lib/pgsql/9.1/data/pg_hba.conf" do
   owner "postgres"
   group "postgres"
   mode "0600"
-  notifies :restart, "service[postgresql-9.1]", :immediately
+  notifies :restart, "service[postgresql]", :immediately
 end
 
 package "postgresql91-server" do
@@ -37,7 +42,7 @@ package "postgresql91-server" do
 end
 
 execute "postgres_initialize_db" do
-  command "service postgresql-9.1 initdb"
+  command "service postgresql initdb"
   action :nothing
 end
 
@@ -46,7 +51,7 @@ end
 #  action :run
 #end
 
-service "postgresql-9.1" do
+service "postgresql" do
   supports :status => true, :restart => true
   action [ :enable, :start ]
 end
