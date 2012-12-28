@@ -1,4 +1,3 @@
-#
 # Cookbook Name:: nagios_nrpe
 # Recipe:: default
 #

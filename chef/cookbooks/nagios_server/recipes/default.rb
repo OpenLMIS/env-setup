@@ -1,10 +1,10 @@
-#
 # Cookbook Name:: nagios_server
 # Recipe:: default
 #
 # Copyright 2012
 #
 # All rights reserved - Do Not Redistribute
+
 include_recipe "httpd"
 
 %w{nagios php nagios-plugins-all pnp4nagios}.each do |pkg|

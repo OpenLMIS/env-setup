@@ -1,11 +1,9 @@
-#
 # Cookbook Name:: tomcat
 # Recipe:: default
 #
 # Copyright 2012
 #
 # All rights reserved - Do Not Redistribute
-#
 
 cookbook_file "/tmp/apache-tomcat-7.0.33.tar.gz" do
   source "apache-tomcat-7.0.33.tar.gz"

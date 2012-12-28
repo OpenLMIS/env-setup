@@ -1,4 +1,3 @@
-#
 # Cookbook Name:: jenkins-build-slave
 # Recipe:: default
 #

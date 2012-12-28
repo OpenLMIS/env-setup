@@ -1,4 +1,3 @@
-#
 # Cookbook Name:: postgres
 # Recipe:: default
 #

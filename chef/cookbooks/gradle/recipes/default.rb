@@ -1,11 +1,9 @@
-#
 # Cookbook Name:: gradle
 # Recipe:: default
 #
 # Copyright 2012
 #
 # All rights reserved - Do Not Redistribute
-#
 
 script "Gradle Installation" do
   interpreter "bash"

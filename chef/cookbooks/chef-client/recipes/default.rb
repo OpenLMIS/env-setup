@@ -1,4 +1,3 @@
-#
 # Cookbook Name:: chef-client
 # Recipe:: default
 #

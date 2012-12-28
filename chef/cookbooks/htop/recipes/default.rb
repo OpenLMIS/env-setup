@@ -1,4 +1,3 @@
-#
 # Cookbook Name:: htop
 # Recipe:: default
 #

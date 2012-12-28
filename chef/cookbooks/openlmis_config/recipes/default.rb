@@ -1,4 +1,3 @@
-#
 # Cookbook Name:: openlmis_config
 # Recipe:: default
 #

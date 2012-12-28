@@ -1,3 +1,10 @@
+# Cookbook Name:: httpd
+# Recipe:: default
+#
+# Copyright 2011
+#
+# All rights reserved - Do Not Redistribute
+
 package "httpd" do
   package_name "httpd"
   action :install
