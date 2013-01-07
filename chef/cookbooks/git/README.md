@@ -1,8 +1,12 @@
-= DESCRIPTION:
+DESCRIPTION:
+============
 Installs package for git
-= REQUIREMENTS:
 
-= ATTRIBUTES:
+REQUIREMENTS:
+=============
 
-= USAGE:
+ATTRIBUTES:
+===========
 
+USAGE:
+======

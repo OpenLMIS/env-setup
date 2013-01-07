@@ -1,6 +1,6 @@
 Description
 ===========
-Cookbook for installation of Postgres 1.9.3.
+Cookbook for installation of Postgres 9.1.
 
 Requirements
 ============
