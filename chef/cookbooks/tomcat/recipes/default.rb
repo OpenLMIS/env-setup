@@ -5,8 +5,8 @@
 #
 # All rights reserved - Do Not Redistribute
 
-cookbook_file "/tmp/apache-tomcat-7.0.33.tar.gz" do
-  source "apache-tomcat-7.0.33.tar.gz"
+remote_file "/tmp/apache-tomcat-7.0.33.tar.gz" do
+  source "http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.33/bin/apache-tomcat-7.0.33.tar.gz"
   owner "openlmis"
   group "openlmis"
   mode "0775"
