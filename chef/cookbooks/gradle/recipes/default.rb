@@ -9,7 +9,7 @@
 remote_file "#{node["webapp"]["home"]}/gradle-1.3-all.zip" do
   source "http://services.gradle.org/distributions/gradle-1.3-all.zip"
   owner "openlmis"
-  root "openlmis"
+  group "openlmis"
   mode "0755"
 end
 
