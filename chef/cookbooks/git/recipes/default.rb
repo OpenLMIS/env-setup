@@ -5,6 +5,4 @@
 #
 # All rights reserved - Do Not Redistribute
 
-package "git" do
-	action :install
-end
+package "git"
