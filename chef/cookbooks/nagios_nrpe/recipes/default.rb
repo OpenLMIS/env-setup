@@ -21,7 +21,7 @@ template "/etc/nrpe.d/system.cfg" do
   owner "root"
   group "root"
   mode "0644"
-  notifies :run, "execute[restart nrpe]"; :immediately
+  notifies :restart, "service[nrpe]"; :immediately
 end
 
 ["check_jenkins","check_apache","check_tomcat","check_postgresql","check_inode", "check_memory", "check_space", "check_procs"].each do |file|
@@ -30,7 +30,7 @@ end
     owner "root"
     group "root"
     mode "755"
-    notifies :run, "execute[restart nrpe]"; :immediately
+    notifies :restart, "service[nrpe]"; :immediately
   end
 end
 
@@ -39,7 +39,11 @@ end
 #  action :run
 #end
 
-execute "restart nrpe" do
-  command "service nrpe stop; /usr/sbin/nrpe -c /etc/nagios/nrpe.cfg -d"
-  action :nothing
+service "nrpe" do
+  supports :restart => true
+  action [:enable, :start]
+  
+  start_command "/usr/sbin/nrpe -c /etc/nagios/nrpe.cfg -d"
+  stop_command "service nrpe stop"
+  restart_command "service nrpe stop; /usr/sbin/nrpe -c /etc/nagios/nrpe.cfg -d"
 end

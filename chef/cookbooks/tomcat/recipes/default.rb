@@ -5,7 +5,7 @@
 #
 # All rights reserved - Do Not Redistribute
 
-remote_file "/tmp/apache-tomcat-7.0.33.tar.gz" do
+remote_file "#{node["webapp"]["home"]}/apache-tomcat-7.0.33.tar.gz" do
   source "http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.33/bin/apache-tomcat-7.0.33.tar.gz"
   owner "openlmis"
   group "openlmis"

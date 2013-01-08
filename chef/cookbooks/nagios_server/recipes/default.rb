@@ -28,7 +28,7 @@ execute "update the passwords file for admins" do
   end.join(" && ")
 
   command cmd
-  notifies :restart, resources(:service => 'httpd') 
+  notifies :restart, "service[httpd]", :immediately
 end
 
 execute "update the passwords file for guests" do
@@ -37,7 +37,7 @@ execute "update the passwords file for guests" do
   end.join(" && ")
 
   command cmd
-  notifies :restart, resources(:service => 'httpd') 
+  notifies :restart, "service[httpd]", :immediately
 end
 
 execute "Changing permissions for client.pem in /etc/chef/ for nagios access" do
@@ -66,8 +66,8 @@ end
     group "root"
     mode "644"
     variables(:nodes_from_solr => nodes_from_solr, :CI_servers => CI_servers, :QA_servers => QA_servers, :UAT_servers => UAT_servers)
-    notifies :run, "execute[restart nrpe]", :immediately
-    notifies :run, "execute[restart nagios]", :immediately
+    notifies :restart, "service[nrpe]", :immediately
+    notifies :restart, "service[nagios]", :immediately
   end
 end
 
@@ -75,12 +75,21 @@ execute "nagios-config-check" do
   command "nagios -v /etc/nagios/nagios.cfg"
 end
 
-execute "restart nrpe" do
-  command "service nrpe stop; /usr/sbin/nrpe -c /etc/nagios/nrpe.cfg -d"
-  action :run
+service "nrpe" do
+  supports :restart => true
+  action [:enable, :start]
+  
+  start_command "/usr/sbin/nrpe -c /etc/nagios/nrpe.cfg -d"
+  stop_command "service nrpe stop"
+  restart_command "service nrpe stop; /usr/sbin/nrpe -c /etc/nagios/nrpe.cfg -d"
 end
 
-execute "restart nagios" do
-  command "service nagios stop; /usr/sbin/nagios -d /etc/nagios/nagios.cfg"
-  action :run
+service "nagios" do
+  supports :restart => true
+  action [:enable, :start]
+  
+  start_command "/usr/sbin/nagios -d /etc/nagios/nagios.cfg"
+  stop_command "service nagios stop"
+  restart_command "service nagios stop; /usr/sbin/nagios -d /etc/nagios/nagios.cfg"
 end
+
