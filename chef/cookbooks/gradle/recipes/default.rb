@@ -21,7 +21,7 @@ script "Gradle Installation" do
   cd #{node["webapp"]["home"]} 
   unzip -o #{node["webapp"]["home"]}/gradle-1.3-all.zip
   EOH
-  not_if "test -f #{node["webapp"]["home"]}/gradle-1.3-all.zip"
+  not_if "gradle -v | grep 'Gradle 1.3'"
   notifies :run, "execute[Set gradle home]", :immediately
 end
 
