@@ -4,7 +4,7 @@
 	rotate 5
 }
 
-/home/openlmis/*.log.* {
+<%=node["webapp_home"]%>/*.log {
 	weekly
 	compress
 	rotate 5
