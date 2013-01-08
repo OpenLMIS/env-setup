@@ -1,5 +1,5 @@
 # Cookbook Name:: chef-client
-# Recipe:: default
+# Recipe:: centos
 #
 # Copyright 2012
 #
