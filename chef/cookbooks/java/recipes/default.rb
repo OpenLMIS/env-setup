@@ -5,6 +5,7 @@
 #
 # All rights reserved - Do Not Redistribute
 
-["java", "java-1.7.0-openjdk", "java-1.7.0-openjdk-devel"].each do |pkg|
-  package pkg
+case node["platform"]
+when "centos"
+  include_recipe "java::centos"
 end
