@@ -41,7 +41,7 @@ describe 'nagios_server::centos' do
     chef_run.execute("update the passwords file for guests").should notify("service[httpd]", :restart) 
   end
 
-  it "should change permissions fir client.pem" do
+  it "should change permissions for client.pem" do
     chef_run.should execute_command "chmod 644 /etc/chef/client.pem"
   end
 
@@ -56,7 +56,6 @@ describe 'nagios_server::centos' do
       chef_run.should create_file "/etc/nagios/objects/#{obj}.cfg"
       chef_run.template("/etc/nagios/objects/#{obj}.cfg").should be_owned_by("root", "root")
       chef_run.template("/etc/nagios/objects/#{obj}.cfg").mode.should == "644"
-      chef_run.template("/etc/nagios/objects/#{obj}.cfg").should notify("service[nrpe]", :restart)  
       chef_run.template("/etc/nagios/objects/#{obj}.cfg").should notify("service[nagios]", :restart)  
     end
   end
