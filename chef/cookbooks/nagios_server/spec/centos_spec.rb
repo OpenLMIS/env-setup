@@ -25,7 +25,7 @@ describe 'nagios_server::centos' do
   it "should enable and start httpd" do
     chef_run.should start_service "httpd"
     chef_run.should set_service_to_start_on_boot "httpd"
-    chef_run.service("httpd").supports.should == {:status=>false, :restart=>false, :reload=>false}
+    chef_run.service("httpd").supports.should == {:restart=>true}
   end
 
   it "should create /etc/nagios/passwd" do

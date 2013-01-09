@@ -26,5 +26,16 @@ describe 'postgres::centos' do
     chef_run.template('/var/lib/pgsql/9.1/data/pg_hba.conf').source.should == "pg_hba.conf.erb"
     chef_run.template('/var/lib/pgsql/9.1/data/pg_hba.conf').should notify("service[postgresql]",:restart)
   end
- 
+  
+  it 'should intialize postgres db' do
+    chef_run.should execute_command "service postgresql initdb"
+  end 
+  
+  it 'should enable service postgresql' do
+    chef_run.should set_service_to_start_on_boot "postgresql"
+  end
+  
+  it 'should start service postgresql' do
+    chef_run.should start_service "postgresql"
+  end
 end
