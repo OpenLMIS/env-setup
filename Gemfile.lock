@@ -82,7 +82,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  chef
   chefspec
   rake
   rspec
