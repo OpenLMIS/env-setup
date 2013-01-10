@@ -12,7 +12,7 @@ it 'should get remote_file apache-tomcat-7.0.33.tar.gz and notify' do
     chef_run.remote_file("/home/openlmis/apache-tomcat-7.0.33.tar.gz").should be_owned_by("openlmis","openlmis")
   chef_run.remote_file("/home/openlmis/apache-tomcat-7.0.33.tar.gz").mode.should == "0775"
   chef_run.remote_file("/home/openlmis/apache-tomcat-7.0.33.tar.gz").source.should == "http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.33/bin/apache-tomcat-7.0.33.tar.gz"
-  chef_run.remote_file("/home/openlmis/apache-tomcat-7.0.33.tar.gz").should notify ("execute[Installing Tomcat tarball]",:run)
+  chef_run.remote_file("/home/openlmis/apache-tomcat-7.0.33.tar.gz").should notify("execute[Installing Tomcat tarball]",:run)
   end
   
  # it 'should execute installing Tomcat tarball' do
