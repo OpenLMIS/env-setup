@@ -30,7 +30,7 @@ SETUP
 
 Cookbook Testing
 ================
-* Using chefspec (rspec based) tool for cookbook testing https://github.com/acrmp/chefspec .
+* Using chefspec (rspec based) tool for cookbook testing https://github.com/acrmp/chefspec
 * Gemfile in env-setup has the gems loaded.
 * Run bundle install to install the gems.
 * unit_test rake task is defined in Rakefile.
