@@ -2,10 +2,10 @@
 LMIS_WAR_SOURCE_URL='http://openlmis01.thoughtworks.com:8080/job/1.OpenLMIS/buildVersion/artifact/modules/openlmis-web/build/libs/'
 export LMIS_WAR_SOURCE_URL
 
-LMIS_WAR_DESTINATION="$HOME/<%=node["tomcat_package"]%>/webapps"
+LMIS_WAR_DESTINATION="$HOME/<%=node["tomcat"]["package"]%>/webapps"
 export LMIS_WAR_DESTINATION
 
-LMIS_SERVER_HOME="$HOME/<%=node["tomcat_package"]%>"
+LMIS_SERVER_HOME="$HOME/<%=node["tomcat"]["package"]%>"
 export LMIS_SERVER_HOME
 
 LMIS_SERVER_NAME='tomcat7x'
