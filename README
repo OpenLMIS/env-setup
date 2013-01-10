@@ -27,3 +27,12 @@ SETUP
 * Upload roles from ./chef/roles to the chef server
 * Run baserole on the newly set up node
 * Node is ready for the application to be deployed.
+
+Cookbook Testing
+================
+* Using chefspec (rspec based) tool for cookbook testing https://github.com/acrmp/chefspec .
+* Gemfile in env-setup has the gems loaded.
+* Run bundle install to install the gems.
+* unit_test rake task is defined in Rakefile.
+* Use `bundle exec rake` to test all cookbooks.
+* For individual cookbook spec testing use `rspec chef/cookbooks/<cookbook_name>/spec/*_spec.rb`
