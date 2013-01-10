@@ -8,7 +8,7 @@ describe 'postgres::centos' do
   
   ["postgresql91","postgresql91-server"].each do |package|
     it "should install #{package}" do
-      chef_run.should install_package "#{package}"
+      chef_run.should install_package package
     end
   end
   
