@@ -5,7 +5,8 @@ describe 'httpd::centos' do
   it 'should install httpd package' do
     chef_run.should install_package "httpd"
   end
-  it 'should enable service httpd' do
+  it 'should enable and start service httpd' do
    chef_run.should set_service_to_start_on_boot "httpd"
+   chef_run.should start_service "httpd"
  end
 end
