@@ -84,4 +84,4 @@ PLATFORMS
 DEPENDENCIES
   chefspec
   rake
-  rspec
+  rspec-core
