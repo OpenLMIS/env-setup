@@ -19,11 +19,17 @@ execute "Installing Tomcat tarball" do
 end
 
 cookbook_file "/etc/init.d/tomcat" do
-  source "tomcat"
-  owner "root"
   group "root"
   mode "0755"
   notifies :run, "execute[Add tomcat to chkconfig]", :immediately
+end
+
+template "#{node["webapp"]["home"]}/apache-tomcat-7.0.33/bin/setenv.sh" do
+  source "setenv.sh.erb"
+  owner "openlmis"
+  group "openlmis"
+  mode "0755"
+  action :create
 end
 
 execute "Add tomcat to chkconfig" do
