@@ -1,0 +1,22 @@
+{
+  "name": "baserole",
+  "description": "Installs basic packages for OpenLMIS",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[iptables]",
+    "recipe[openlmis_config]",
+    "recipe[git]",
+    "recipe[java]",
+    "recipe[gradle]",
+    "recipe[postgres]",
+    "role[nagios_nrpe]",
+    "recipe[logrotate]"
+  ],
+  "env_run_lists": {
+  }
+}

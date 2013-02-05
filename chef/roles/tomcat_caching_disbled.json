@@ -1,0 +1,28 @@
+{
+  "name": "qa",
+  "description": "QA environment specific role",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+    "tomcat": {
+      "env": "qa"
+    }
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[iptables]",
+    "recipe[openlmis_config]",
+    "recipe[git]",
+    "recipe[java]",
+    "recipe[gradle]",
+    "recipe[postgres]",
+    "recipe[tomcat]",
+    "role[nagios_nrpe]",
+    "recipe[logrotate]",
+    "recipe[httpd]",
+    "recipe[tomcat::configure]"
+  ],
+  "env_run_lists": {
+  }
+}

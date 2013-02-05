@@ -1,0 +1,17 @@
+{
+  "name": "ci",
+  "description": "Base role for CI machine",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "role[baserole]",
+    "recipe[jenkins_ci]",
+    "recipe[firefox]"
+  ],
+  "env_run_lists": {
+  }
+}
