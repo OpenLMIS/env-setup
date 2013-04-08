@@ -1,1 +1,1 @@
-export CATALINA_OPTS="-Denv=<%=node["tomcat"]["env"]%> -Dmail.sender.password=\!abcd4321"
+export CATALINA_OPTS="-DenvironmentName=<%=node["tomcat"]["environmentName"]%> -Dmail.sender.password=\!abcd4321"
