@@ -54,3 +54,8 @@ service "postgresql" do
   supports :status => true, :restart => true
   action [ :enable, :start ]
 end
+
+yum_package "postgresql91-contrib" do
+  action :install
+  flush_cache [:before]
+end
