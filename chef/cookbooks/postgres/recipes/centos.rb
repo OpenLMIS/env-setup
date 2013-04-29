@@ -1,10 +1,3 @@
-# Cookbook Name:: postgres
-# Recipe:: centos
-#
-# Copyright 2012
-#
-# All rights reserved - Do Not Redistribute
-
 execute "Install PostgreSQL repository" do
   command "rpm -Uvh http://yum.postgresql.org/9.1/redhat/rhel-6-x86_64/pgdg-redhat91-9.1-5.noarch.rpm"
   not_if "test -f /etc/yum.repos.d/pgdg-91-redhat.repo"
@@ -19,7 +12,15 @@ link "/etc/init.d/postgresql" do
   not_if "test -f /etc/init.d/postgresql"
 end
 
-cookbook_file "/var/lib/pgsql/9.1/data/postgresql.conf" do
+directory "/var/lib/pgsql/9.1/archive" do
+  action :create
+  owner "postgres"
+  group "postgres"
+  mode "644"
+end
+
+
+template "/var/lib/pgsql/9.1/data/postgresql.conf" do
   source "postgresql.conf"
   owner "postgres"
   group "postgres"
@@ -31,7 +32,7 @@ template "/var/lib/pgsql/9.1/data/pg_hba.conf" do
   source "pg_hba.conf.erb"
   owner "postgres"
   group "postgres"
-  mode "0600"
+  mode "600"
   notifies :restart, "service[postgresql]", :immediately
 end
 
@@ -42,7 +43,23 @@ end
 
 execute "postgres_initialize_db" do
   command "service postgresql initdb"
+  notifies :run,"execute[create data backup]", :immediately
   action :nothing
+end
+
+#bash "create data backup" do
+#  user "root"
+#  cwd "#{node["postgreSQL"]["home"]}"
+#  code<<-EOH
+#        export PGDATA=#{node["postgreSQL"]["home"]}/data
+#        psql -c \"SELECT pg_start_backup('initial backup for SR')" template
+#        tar cvf pg_base_backup.tar $PGDATA
+#        psql -c \"SELECT pg_stop_backup()\" template        
+ # EOH
+#end
+
+execute "create data backup" do
+  command "psql -c \"SELECT pg_start_backup('initial backup for SR')\""
 end
 
 #execute "open port for postgres" do

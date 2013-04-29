@@ -86,5 +86,7 @@ host    all             all             <%=hostSubnet%>         trust
 # Allow replication connections from localhost, by a user with the
 # replication privilege.
 #local   replication     postgres                                md5
-#host    replication     postgres        127.0.0.1/32            md5
+<%node["postgreSQL"]["slaveSubnet"].each do |slaveSubnet|%> 
+host    replication     postgres        <%=slaveSubnet%>         md5
+<%end%>
 #host    replication     postgres        ::1/128                 md5
