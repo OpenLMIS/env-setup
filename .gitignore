@@ -1,5 +1,8 @@
 .bundle/
 tmp/
+chef/cookbooks/httpd/files/default/apache_openlmis.crt
+chef/cookbooks/httpd/files/default/apache_openlmis.csr
+chef/cookbooks/httpd/files/default/apache_openlmis.key
 
 ## deploy-script
 config-code/deploy-script/.idea/

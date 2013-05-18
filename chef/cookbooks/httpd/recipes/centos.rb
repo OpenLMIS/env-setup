@@ -16,6 +16,13 @@ directory "/etc/httpd/conf.d/ssl" do
   action :create
 end
 
+cookbook_file "etc/httpd/conf.d/openlmis.conf" do
+  source "openlmis.conf"
+  owner "root"
+  group "root"
+  mode "700"
+end
+
 cookbook_file "/etc/httpd/conf.d/ssl/apache_openlmis.key" do
   source "apache_openlmis.key"
   owner "root"
