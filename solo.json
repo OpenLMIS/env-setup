@@ -1,0 +1,13 @@
+{
+	"run_list": [
+	"recipe[iptables]",
+    	"recipe[openlmis_config]",
+    	"recipe[java]",
+    	"recipe[postgres]",
+    	"recipe[tomcat]",
+    	"recipe[httpd]",
+    	"recipe[tomcat::configure]",
+    	"recipe[vsftpd]"
+	]
+}
+
