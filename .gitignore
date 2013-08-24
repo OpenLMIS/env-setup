@@ -16,3 +16,4 @@ config-code/deploy-script/.gradle
 config-code/deploy-script/*.DS_Store
 config-code/deploy-script/*.class.idea
 config-code/deploy-script/.gradle
+*.swp
