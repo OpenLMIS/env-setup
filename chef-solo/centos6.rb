@@ -38,8 +38,8 @@ mkdir -p /etc/chef
 
 (
 cat <<'EOP'
-recipe_url "https://raw.github.com/OpenLMIS/env-setup/fc996f63f55e3e8155a68c9a75df975b34bb017d/chef-solo.tar.gz" 
-json_attribs "https://raw.github.com/OpenLMIS/env-setup/master/solo.json" 
+recipe_url "https://github.com/OpenLMIS/env-setup/blob/master/chef-solo/chef-solo.tar.gz?raw=true" 
+json_attribs "https://raw.github.com/OpenLMIS/env-setup/master/chef-solo/solo.json" 
 
 EOP
 ) > /etc/chef/solo.rb
