@@ -1,5 +1,5 @@
 <%#encoding: UTF-8%>
-bash -c '
+bash -c 
 
 # ADD EPEL & RBEL REPOS
 # ======================
@@ -37,10 +37,9 @@ sed -i "s/Defaults    requiretty/#Defaults    requiretty/g" /etc/sudoers
 mkdir -p /etc/chef
 
 (
-cat <<'EOP'
+cat <<EOP
 recipe_url "https://github.com/OpenLMIS/env-setup/blob/master/chef-solo/chef-solo.tar.gz?raw=true" 
 json_attribs "https://raw.github.com/OpenLMIS/env-setup/master/chef-solo/solo.json" 
-
 EOP
 ) > /etc/chef/solo.rb
 
