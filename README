@@ -20,6 +20,20 @@ Maintaining DevOps related Project requirements
 
 SETUP
 =====
+Using Chef-Solo
+--------------
+
+* Set up your base machine as a knife client. Find more on chef http://wiki.opscode.com/display/chef/Chef+Basics
+* Set up git on your base machine
+*   Run following commands : -
+           git clone https://github.com/OpenLMIS/env-setup.git
+           cd env-setup/chef-solo
+           knife bootstrap vm/ec2-IP/domain-name  --template-file centos6.rb -x username
+
+* The vm/ec2 instance is up and running with latest build.
+
+Using Chef Server
+----------------
 * Set up a chef server as described in http://blog.frameos.org/2011/05/19/installing-chef-server-0-10-in-rhel-6-scientificlinux-6/
 * Set up your base machine as a knife client. Find more on chef http://wiki.opscode.com/display/chef/Chef+Basics 
 * Bootstrap a new node using ./scripts/bootstrap-templates/centos6.rb. This will register the node to the chef server.
