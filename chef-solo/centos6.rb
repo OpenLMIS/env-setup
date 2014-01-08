@@ -46,7 +46,7 @@ sudo sed -i "s/Defaults    requiretty/#Defaults    requiretty/g" /etc/sudoers
 sudo mkdir -p /etc/chef
 
 
-sudo bash -c $'echo \'recipe_url \"https://github.com/OpenLMIS/env-setup/blob/master/chef-solo/chef-solo.tar.gz?raw=truez\"\' > /etc/chef/solo.rb'
+sudo bash -c $'echo \'recipe_url \"https://raw.github.com/OpenLMIS/env-setup/fc996f63f55e3e8155a68c9a75df975b34bb017d/chef-solo.tar.gz\"\' > /etc/chef/solo.rb'
 sudo bash -c $"echo \'json_attribs \"https://raw.github.com/OpenLMIS/env-setup/master/chef-solo/solo.json\"\' >> /etc/chef/solo.rb'
 
 chef-solo -c /etc/chef/solo.rb
